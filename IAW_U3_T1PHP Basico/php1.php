@@ -7,6 +7,9 @@
     <link rel="stylesheet" type="text/css" href=" ">
     </head>
     <body>
-      <script type="text/javascript" src=" "></script>
+      <?php
+      $var1="Hola mundo";
+      echo $var1;
+       ?>
     </body>
 </html>
