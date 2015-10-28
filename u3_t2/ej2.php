@@ -9,12 +9,14 @@
   <body>
 
         <div id="main">
-          <table>
+          <table border="1px">
           <?php
-            $v1=["Nombre"=>"Alvaro","Apellido"=>"Garrido"];
+            $v1=["2222222X"=>"Pepe","3333333X"=>"Manuel","4444444X"=>"José","5555555X"=>"Rosa"];
+            $v2=["2222222X"=>"Pérez","3333333X"=>"Jiménez","4444444X"=>"Martínez","5555555X"=>"Rodríguez"];
+
             foreach ($v1 as $k => $j)
             {
-              echo "<tr><td>".$k."</td><td></td>".$j."</tr>";
+              echo "<tr><td>".$j."</td><td>".$v2[$k]."</td></tr>";
 
             }
 
