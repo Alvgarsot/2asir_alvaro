@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>numeros</title>
+    <title>recorrer vectores nombre y apllidos misma clave</title>
     <link rel="stylesheet" type="text/css" href="">
   </head>
   <body>
