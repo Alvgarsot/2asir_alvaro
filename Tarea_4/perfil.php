@@ -12,7 +12,7 @@
     #container {
       width: 1000px;
       margin: 10px auto;
-    }
+    };
     #imagen {
       float: left;
       height: 400px;
