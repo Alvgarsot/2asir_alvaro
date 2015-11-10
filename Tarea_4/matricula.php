@@ -41,7 +41,7 @@
     echo  "<fieldset><legend>Curso</legend>";
       echo  "<select name='curso'>";
         echo  "<option  value='1ASIR'>1ASIR</option>";
-          echo  "<option name='curso' value='2ASIR'>2ASIR</option>";
+          echo  "<option  value='2ASIR'>2ASIR</option>";
       echo  "</select>";
     echo  "</fieldset>";
     echo  "<fieldset><legend>Lista de Asignaturas</legend>";
@@ -66,7 +66,12 @@ else {
   <h2>Telefono</h2><p>".$_POST["telefono"]."</p>
   <h2>E-mail</h2><p>".$_POST["email"]."</p>
   <h2>Curso</h2><p>".$_POST["curso"]."</p>
+  <h2>Beca</h2><p>".$_POST["beca"]."</p>
   ";
+  $dentro[]=$_POST["asignatura"];
+  for ($i=0;$i<sizeof($dentro);$i++) {
+        echo "Asignatura escogida:".$dentro[$i]."<br> ";
+      }
 }
 
 ?>
