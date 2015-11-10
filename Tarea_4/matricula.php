@@ -9,7 +9,6 @@
     $(document).ready(function () {
     $('#enviar').click(function() {
       marcado = $("input[type=checkbox]:checked").length;
-
       if(!marcado) {
         alert("Tienes que marcar al menos una casilla");
         return false;
@@ -18,7 +17,33 @@
 });
     </script>
     <style>
-
+        #info {
+            margin-left: 50px;
+        float: left;
+            height: 600px;
+            width: 300px;
+            color: black;
+            background-color: gray;
+            margin-right: 50px;
+            padding-left: 20px;
+        }
+        #info2 {
+        float: left;
+            height: 600px;
+            width: 300px;
+            color: black;
+            background-color: gray;
+            margin-right: 50px;
+            padding-left: 20px;
+        }
+        #info3 {
+        float: left;
+            height: 600px;
+            width: 300px;
+            color: black;
+            background-color: gray;
+            padding-left: 20px;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href=" ">
     </head>
@@ -28,7 +53,6 @@
         <form method="post">
         <?php
         if (empty($_POST)) {
-
     echo  "<fieldset>";
       echo  "<legend>Datos personales</legend>";
     echo  "<p>DNI:<input type='text' name='DNI' required></p>";
@@ -45,39 +69,53 @@
       echo  "</select>";
     echo  "</fieldset>";
     echo  "<fieldset><legend>Lista de Asignaturas</legend>";
-echo  "<p><input type='checkbox' name='asignatura'>REDES</p>";
-echo  "<p><input type='checkbox' name='asignatura'>BASES DE DATOS</p>";
-echo  "<p><input type='checkbox' name='asignatura'>SEGURIDAD</p>";
-echo  "<p><input type='checkbox' name='asignatura'>SISTEMAS</p>";
-echo  "<p><input type='checkbox' name='asignatura'>IMPLANTACION</p>";
-echo  "<p><input type='checkbox' name='asignatura'>EMPRESA</p>";
+echo  "<p><input type='checkbox' name='asignatura1' value='Redes'>REDES</p>";
+echo  "<p><input type='checkbox' name='asignatura2' value='Base de datos'>BASES DE DATOS</p>";
+echo  "<p><input type='checkbox' name='asignatura3' value='Seguridad'>SEGURIDAD</p>";
+echo  "<p><input type='checkbox' name='asignatura4' value='Sistemas'>SISTEMAS</p>";
+echo  "<p><input type='checkbox' name='asignatura5' value='Implantacion'>IMPLANTACION</p>";
+echo  "<p><input type='checkbox' name='asignatura6' value='Empresa'>EMPRESA</p>";
     echo  "</fieldset>";
     echo  "<fieldset><legend>Opción a beca</legend>";
-echo  "<p><input type='radio' name='beca' value='si'>Con beca</p>";
-echo  "<p><input type='radio' name='beca' value='no' checked='checked'>Sin beca</p>";
+echo  "<p><input type='radio' name='beca' value='Si'>Con beca</p>";
+echo  "<p><input type='radio' name='beca' value='No' checked='checked'>Sin beca</p>";
     echo  "</fieldset>";
   echo  "<input id='enviar' type='submit'>";
 }
 else {
-  echo "<h2>DNI</h2><p>".$_POST["DNI"]."</p>
-  <h2>Nombre</h2><p>".$_POST["nombre"]."</p>
-  <h2>Apellidos</h2><p>".$_POST["apellidos"]."</p>
-  <h2>Direccion</h2><p>".$_POST["direccion"]."</p>
-  <h2>Telefono</h2><p>".$_POST["telefono"]."</p>
-  <h2>E-mail</h2><p>".$_POST["email"]."</p>
-  <h2>Curso</h2><p>".$_POST["curso"]."</p>
-  <h2>Beca</h2><p>".$_POST["beca"]."</p>
-  ";
-  $dentro[]=$_POST["asignatura"];
-  for ($i=0;$i<sizeof($dentro);$i++) {
-        echo "Asignatura escogida:".$dentro[$i]."<br> ";
-      }
+    
+  echo "<div id='info'><h3>DNI</h3><p>".$_POST["DNI"]."</p>
+  <h3>Nombre</h3><p>".$_POST["nombre"]."</p>
+  <h3>Apellidos</h3><p>".$_POST["apellidos"]."</p>
+  <h3>Direccion</h3><p>".$_POST["direccion"]."</p>
+  <h3>Telefono</h3><p>".$_POST["telefono"]."</p>
+  <h3>E-mail</h3><p>".$_POST["email"]."</p></div><div id='info2'>
+  <h3>Curso</h3><p>".$_POST["curso"]."</p>
+  <h3>Beca</h3><p>".$_POST["beca"]."</p></div><div id='info3'>
+  <h3>Asignatura/s escogida/s</h3><ul>";
+   if (isset($_POST["asignatura1"])) {
+   echo "<li>REDES</li>";
+   }
+  if (isset($_POST["asignatura2"])) {
+   echo "<li>Base de datos</li>";
+   }
+    if (isset($_POST["asignatura3"])) {
+   echo "<li>Seguridad</li>";
+   }
+    if (isset($_POST["asignatura4"])) {
+   echo "<li>Sistemas</li>";
+   }
+   if (isset($_POST["asignatura5"])) {
+   echo "<li>Implantacion</li>";
+   }
+   if (isset($_POST["asignatura6"])) {
+   echo "<li>Empresa</li>";
+   }
+echo "</ul></div>";
 }
 
 ?>
     </form>
-
-
 
     </div>
     </body>
