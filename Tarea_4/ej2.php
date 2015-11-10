@@ -5,37 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
     <link rel="stylesheet" type="text/css" href="">
+     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <style>
-    body { font-size: 62.5%; }
-    label, input { display:block; }
-    input.text { margin-bottom:12px; width:95%; padding: .4em; }
-    fieldset { padding:0; border:0; margin-top:25px; }
-    h1 { font-size: 1.2em; margin: .6em 0; }
-  </style>
+
   <script>
-  $(function() {
-    var dialog, form;
-    $( "#dialog" ).dialog({
-
-      autoOpen: true,
-      height: 300,
-      width: 350,
-      modal: true,
-      buttons: {
-        Enviar: function() {
-
-        };
-        Cancel: function() {
-          dialog.dialog( "close" );
-        }
-      },
-      close: function() {
-        form[ 0 ].reset();
-        allFields.removeClass( "ui-state-error" );
-      }
-    });
+  $(function() {    var dialog, form;
+    $( "#dialog" ).dialog();
 
   });
   </script>
@@ -46,24 +22,30 @@
 <div id="dialog" title="Logueate">
   <p class="validateTips">Todos los campos son requeridos</p>
 
-  <form action="ej2.php">
+  <form method="post">
+
+
+    <fieldset>
+      <label for="name">Usuario</label>
+    <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all"></br>
+    <label for="password">Contraseña</label>
+      <input type="password" name="password" id="password" class="text ui-widget-content ui-corner-all">
+
+<?php
+if (isset($_POST["name"])&& $_POST["name"]<> "pepe"||isset($_POST["password"])&& $_POST["password"]<> "1234") {
+  echo "Usuario incorrecto";
+
+}
+?>
+      <input type="submit">
+
+    </fieldset>
+
     <?php
 
-    echo "<fieldset>";
-      echo "<label for='name'>Usuario</label>";
-      echo "<input type='text' name='name' id='name' class='text ui-widget-content ui-corner-all'>";
-      echo "<label for='password'>Contraseña</label>";
-      echo "<input type='password' name='password' id='password' class='text ui-widget-content ui-corner-all'>";
+    if ($_POST["name"]=="pepe"&&$_POST["password"]=="1234") {
+      header('Location: matricula.php');
 
-
-      echo "<input type='submit'>";
-
-    echo "</fieldset>";
-    if ($_GET["name"]=="pepe"||$_GET["password"]=="1234") {
-      header('Location: /Matricula.php');
-    }
-    else {
-      echo "USUARIO INCORRECTO";
     }
 
     ?>
