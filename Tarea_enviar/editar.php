@@ -23,47 +23,24 @@
       }
       //MAKING A SELECT QUERY
       /* Consultas de selección que devuelven un conjunto de resultados */
-      if ($result = $connection->query("SELECT * FROM REPARACIONES WHERE id=$_GET['id'];")) {
+      if ($result = $connection->query("SELECT * FROM REPARACIONES WHERE id=".$_GET['id'])) {
           printf("<p>The select query returned %d rows.</p>", $result->num_rows);
-      ?>
-
-          <!-- PRINT THE TABLE AND THE HEADER -->
-          <table style="border:1px solid black">
-          <thead>
-            <tr>
-              <th>IdReparacion</th>
-              <th>Matricula</th>
-              <th>Fecha Entrada</th>
-              <th>Km</th>
-              <th>Averia</th>
-              <th>Fecha Salida</th>
-              <th>Reparado</th>
-              <th>Observaciones</th>
-              <th>Editar</th>
-              <th>Añadir</br> mecánico</th>
-              <th>Añadir pieza</th>
-              <th>Borrar</th>
-          </thead>
-
-      <?php
+          var_dump($connection->query("SELECT * FROM REPARACIONES WHERE id=".$_GET['id']))
           //FETCHING OBJECTS FROM THE RESULT SET
           //THE LOOP CONTINUES WHILE WE HAVE ANY OBJECT (Query Row) LEFT
           while($obj = $result->fetch_object()) {
               //PRINTING EACH ROW
-              echo "<tr>";
-              echo "<td>".$obj->IdReparacion."</td>";
-              echo "<td>".$obj->Matricula."</td>";
-              echo "<td>".$obj->FechaEntrada."</td>";
-              echo "<td>".$obj->Km."</td>";
-              echo "<td>".$obj->Averia."</td>";
-              echo "<td>".$obj->FechaSalida."</td>";
-              echo "<td>".$obj->Reparado."</td>";
-              echo "<td>".$obj->Observaciones."</td>";
-              echo "<td><a href='editar.php?id=".$obj->IdReparacion."'><img src='http://www.two53.com/wp-content/uploads/2010/07/icono11.gif'></a></td>";
-              echo "<td><a href='asignar_empleados.php?id=".$obj->IdReparacion."'><img src='http://cdn.flaticon.com/png/256/48637.png'></a></td>";
-              echo "<td><a href='asignar_piezas.php?id=".$obj->IdReparacion."'><img src='https://image.freepik.com/iconos-gratis/ajustes-de-la-camara-de-la-rueda-dentada_318-77174.png'></a></td>";
-              echo "<td><a href='editar.php?id=".$obj->IdReparacion."'><img src='https://upload.wikimedia.org/wikipedia/commons/f/f6/White_X_in_red_background.png'></a></td>";
-              echo "</tr>";
+              echo "<form action='' method='post'>";
+              echo "<input type='text' name='idrep' value=".$obj->IdReparacion.">";
+              echo "<input type='text' name='idrep' value=".$obj->Matricula.">";
+              echo "<input type='date' name='idrep' value=".$obj->FechaEntrada.">";
+              echo "<input type='number' name='idrep' value=".$obj->Km.">";
+              echo "<input type='text' name='idrep' value=".$obj->Averia.">";
+              echo "<input type='date' name='idrep' value=".$obj->FechaSalida.">";
+              echo "<input type='number' name='idrep' value=".$obj->Reparado.">";
+              echo "<input type='text' name='idrep' value=".$obj->Observaciones.">";
+              echo "<input type='submit'>";
+              echo "</form>";
           }
           //Free the result. Avoid High Memory Usages
           $result->close();

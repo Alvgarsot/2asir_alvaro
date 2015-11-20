@@ -15,8 +15,10 @@
   <body>
     <?php
     if (!isset($_GET['id']))
-    {}
-      else {
+    {
+      header("Location: crear.php")
+    }
+
       //CREATING THE CONNECTION
       $connection = new mysqli("localhost", "tf", "12345", "TalleresFaber");
       //TESTING IF THE CONNECTION WAS RIGHT
@@ -26,16 +28,34 @@
       }
       //MAKING A SELECT QUERY
       /* Consultas de selección que devuelven un conjunto de resultados */
-      if ($result = $connection->query("DELETE * FROM REPARACIONES WHERE id=$_GET['id'];")) {
-          printf("<p>The select query returned %d rows.</p>", $result->num_rows);
+      $q1 = "DELETE FROM Incluyen WHERE id=".$_GET['id'];
+      $q2 = "DELETE FROM Interviene WHERE id=".$_GET['id'];
+      $q3 = "DELETE FROM FACTURAS WHERE id=".$_GET['id'];
+      $q4 = "DELETE FROM REPARACIONES WHERE id=".$_GET['id'];
 
+      if (!($result = $connection->query($q1))) {
+
+        echo "Error en la conexion con la tabla incluyen";
+      }
+      if (!($result = $connection->query($q2))) {
+
+        echo "Error en la conexion con la tabla Interviene";
+      }
+
+      if (!($result = $connection->query($q3))) {
+
+        echo "Error en la conexion con la tabla FACTURAS";
+      }
+      if (!($result = $connection->query($q4))) {
+
+        echo "Error en la conexion con la tabla REPARACIONES";
+      }
 
           //Free the result. Avoid High Memory Usages
-          $result->close();
           unset($obj);
           unset($connection);
-}
-      } //END OF THE IF CHECKING IF THE QUERY WAS RIGHT
+
+      //END OF THE IF CHECKING IF THE QUERY WAS RIGHT
     ?>
   </body>
 </html>
