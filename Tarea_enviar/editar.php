@@ -15,38 +15,62 @@
   <body>
     <?php
       //CREATING THE CONNECTION
-      $connection = new mysqli("localhost", "tf", "12345", "TalleresFaber");
-      //TESTING IF THE CONNECTION WAS RIGHT
-      if ($connection->connect_errno) {
-          printf("Connection failed: %s\n", $mysqli->connect_error);
-          exit();
-      }
-      //MAKING A SELECT QUERY
-      /* Consultas de selección que devuelven un conjunto de resultados */
-      if ($result = $connection->query("SELECT * FROM REPARACIONES WHERE id=".$_GET['id'])) {
-          printf("<p>The select query returned %d rows.</p>", $result->num_rows);
-          var_dump($connection->query("SELECT * FROM REPARACIONES WHERE id=".$_GET['id']))
-          //FETCHING OBJECTS FROM THE RESULT SET
-          //THE LOOP CONTINUES WHILE WE HAVE ANY OBJECT (Query Row) LEFT
-          while($obj = $result->fetch_object()) {
-              //PRINTING EACH ROW
-              echo "<form action='' method='post'>";
-              echo "<input type='text' name='idrep' value=".$obj->IdReparacion.">";
-              echo "<input type='text' name='idrep' value=".$obj->Matricula.">";
-              echo "<input type='date' name='idrep' value=".$obj->FechaEntrada.">";
-              echo "<input type='number' name='idrep' value=".$obj->Km.">";
-              echo "<input type='text' name='idrep' value=".$obj->Averia.">";
-              echo "<input type='date' name='idrep' value=".$obj->FechaSalida.">";
-              echo "<input type='number' name='idrep' value=".$obj->Reparado.">";
-              echo "<input type='text' name='idrep' value=".$obj->Observaciones.">";
-              echo "<input type='submit'>";
-              echo "</form>";
+      if (isset($_GET['id'])) {
+        $connection = new mysqli("localhost", "tf", "12345", "talleresfaber");
+        //TESTING IF THE CONNECTION WAS RIGHT
+        if ($connection->connect_errno) {
+            printf("Conexion fallida: %s\n", $mysqli->connect_error);
+            exit();
           }
-          //Free the result. Avoid High Memory Usages
+
+            //MAKING A SELECT QUERY
+            /* Consultas de selección que devuelven un conjunto de resultados */
+            if ($result = $connection->query("SELECT * FROM REPARACIONES WHERE IdReparacion=".$_GET['id'])) {
+
+                //FETCHING OBJECTS FROM THE RESULT SET
+                //THE LOOP CONTINUES WHILE WE HAVE ANY OBJECT (Query Row) LEFT
+                while($obj = $result->fetch_object()) {
+                    //PRINTING EACH ROW
+                    echo "<form action='editar.php' method='post'>";
+                    echo "ID: <input type='number' name='id' value=".$obj->IdReparacion."></br>";
+                    echo "Matricula: <input type='text' name='matric' value=".$obj->Matricula."></br>";
+                    echo "Fecha de entrada: <input type='date' name='fechaen' value=".$obj->FechaEntrada."></br>";
+                    echo "KM: <input type='number' name='kilom' value=".$obj->Km."></br>";
+                    echo "Averia: <input type='text' name='aver' value=".$obj->Averia."></br>";
+                    echo "Fecha de salida: <input type='date' name='fechasal' value=".$obj->FechaSalida."></br>";
+                    echo "Estado de reparacion: <input type='number' name='repar' value=".$obj->Reparado."></br>";
+                    echo "Observaciones: <input type='text' name='obs' value=".$obj->Observaciones."></br>";
+                    echo "<input type='submit' name='enviar'>";
+                    echo "</form>";
+                }
+
+
+          //Liberar la consulta
           $result->close();
           unset($obj);
           unset($connection);
-      } //END OF THE IF CHECKING IF THE QUERY WAS RIGHT
+        }
+        }
+if (isset($_POST["enviar"])){
+
+        $connection = new mysqli("localhost", "tf", "12345", "talleresfaber");
+mysql_select_db('talleresfaber') or die('No se pudo seleccionar la base de datos');
+        //TESTING IF THE CONNECTION WAS RIGHT
+        if ($connection->connect_errno) {
+            printf("Conexion fallida: %s\n", $mysqli->connect_error);
+            exit();
+        }
+
+       $consulta="UPDATE reparaciones SET IdReparacion='".$_POST['id']."', Matricula='".$_POST['matric']."',FechaEntrada='".$_POST['fechaen']."',Km=".$_POST['kilom'].",Averia='".$_POST['aver']."',FechaSalida='".$_POST['fechasal']."',Reparado='".$_POST['repar']."',Observaciones='".$_POST['obs']."' WHERE IdReparacion=".$_POST['id'].";";
+
+                   $resultado = mysql_query($consulta) or die('Consulta fallida: ' . mysql_error());
+                   if ($resultado) {
+                   echo "Actualizado realizado correctamente";
+                   }
+       $connection->close();
+  }
+
+       //END OF THE IF CHECKING IF THE QUERY WAS RIGHT
     ?>
   </body>
 </html>

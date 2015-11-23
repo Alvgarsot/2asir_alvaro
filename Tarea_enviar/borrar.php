@@ -16,7 +16,7 @@
     <?php
     if (!isset($_GET['id']))
     {
-      header("Location: crear.php")
+      header("Location: crear.php");
     }
 
       //CREATING THE CONNECTION
@@ -28,27 +28,27 @@
       }
       //MAKING A SELECT QUERY
       /* Consultas de selección que devuelven un conjunto de resultados */
-      $q1 = "DELETE FROM Incluyen WHERE id=".$_GET['id'];
-      $q2 = "DELETE FROM Interviene WHERE id=".$_GET['id'];
-      $q3 = "DELETE FROM FACTURAS WHERE id=".$_GET['id'];
-      $q4 = "DELETE FROM REPARACIONES WHERE id=".$_GET['id'];
+      $q1 = "DELETE FROM Incluyen WHERE IdReparacion=".$_GET['id'];
+      $q2 = "DELETE FROM Interviene WHERE IdReparacion=".$_GET['id'];
+      $q3 = "DELETE FROM FACTURAS WHERE IdReparacion=".$_GET['id'];
+      $q4 = "DELETE FROM REPARACIONES WHERE IdReparacion=".$_GET['id'];
 
       if (!($result = $connection->query($q1))) {
 
-        echo "Error en la conexion con la tabla incluyen";
+        echo "<p>Error en la conexion con la tabla incluyen</p>";
       }
       if (!($result = $connection->query($q2))) {
 
-        echo "Error en la conexion con la tabla Interviene";
+        echo "<p>Error en la conexion con la tabla Interviene</p>";
       }
 
       if (!($result = $connection->query($q3))) {
 
-        echo "Error en la conexion con la tabla FACTURAS";
+        echo "<p>Error en la conexion con la tabla FACTURAS</p>";
       }
       if (!($result = $connection->query($q4))) {
 
-        echo "Error en la conexion con la tabla REPARACIONES";
+        echo "<p>Error en la conexion con la tabla REPARACIONES</p>";
       }
 
           //Free the result. Avoid High Memory Usages
