@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GETTING DATA FROM A MYSQL DATABASE</title>
+    <title>Borrar</title>
     <style>
       img {
         height: 35px;
@@ -16,11 +16,11 @@
     <?php
     if (!isset($_GET['id']))
     {
-      header("Location: crear.php");
+      header("Location: reparaciones.php");
     }
 
       //CREATING THE CONNECTION
-      $connection = new mysqli("localhost", "tf", "12345", "TalleresFaber");
+      $connection = new mysqli("localhost", "root", "", "TalleresFaber");
       //TESTING IF THE CONNECTION WAS RIGHT
       if ($connection->connect_errno) {
           printf("Connection failed: %s\n", $mysqli->connect_error);
@@ -29,7 +29,7 @@
       //MAKING A SELECT QUERY
       /* Consultas de selección que devuelven un conjunto de resultados */
       $q1 = "DELETE FROM Incluyen WHERE IdReparacion=".$_GET['id'];
-      $q2 = "DELETE FROM Interviene WHERE IdReparacion=".$_GET['id'];
+      $q2 = "DELETE FROM Intervienen WHERE IdReparacion=".$_GET['id'];
       $q3 = "DELETE FROM FACTURAS WHERE IdReparacion=".$_GET['id'];
       $q4 = "DELETE FROM REPARACIONES WHERE IdReparacion=".$_GET['id'];
 
@@ -50,12 +50,10 @@
 
         echo "<p>Error en la conexion con la tabla REPARACIONES</p>";
       }
-
-          //Free the result. Avoid High Memory Usages
+    header ("Location: reparaciones.php");
+         
           unset($obj);
           unset($connection);
-
-      //END OF THE IF CHECKING IF THE QUERY WAS RIGHT
     ?>
   </body>
 </html>

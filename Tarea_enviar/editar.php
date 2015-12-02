@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GETTING DATA FROM A MYSQL DATABASE</title>
+    <title>Editar</title>
     <style>
       img {
         height: 35px;
@@ -16,7 +16,7 @@
     <?php
       //CREATING THE CONNECTION
       if (isset($_GET['id'])) {
-        $connection = new mysqli("localhost", "tf", "12345", "talleresfaber");
+        $connection = new mysqli("localhost", "root", "", "talleresfaber");
         //TESTING IF THE CONNECTION WAS RIGHT
         if ($connection->connect_errno) {
             printf("Conexion fallida: %s\n", $mysqli->connect_error);
@@ -53,7 +53,7 @@
         }
 if (isset($_POST["enviar"])){
 
-        $connection = new mysqli("localhost", "tf", "12345", "talleresfaber");
+        $connection = new mysqli("localhost", "root", "", "talleresfaber");
 
         //TESTING IF THE CONNECTION WAS RIGHT
         if ($connection->connect_errno) {
@@ -68,7 +68,7 @@ if (isset($_POST["enviar"])){
                    echo "Actualizado realizado correctamente";
                    }
        $connection->close();
-    header("Location: crear.php");
+    header("Location: reparaciones.php");
   }
 
        //END OF THE IF CHECKING IF THE QUERY WAS RIGHT
